@@ -351,6 +351,8 @@ ErrorObject.prototype.toString = function()
     return ""+this.defaultRendering();
 };
 
+ErrorObject.prototype.toString.safe = true;
+
 ErrorObject.prototype.defaultRendering = function()
 {
     return this.asUL();
@@ -421,6 +423,8 @@ ErrorList.prototype.toString = function()
 {
     return ""+this.defaultRendering();
 };
+
+ErrorList.prototype.toString.safe = true;
 
 ErrorList.prototype.defaultRendering = function()
 {

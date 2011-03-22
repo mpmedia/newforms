@@ -1,3 +1,5 @@
+var ak = require('ak');
+
 (function(__global__, undefined)
 {
 
@@ -960,6 +962,8 @@ ErrorObject.prototype.toString = function()
     return ""+this.defaultRendering();
 };
 
+ErrorObject.prototype.toString.safe = true;
+
 ErrorObject.prototype.defaultRendering = function()
 {
     return this.asUL();
@@ -1030,6 +1034,8 @@ ErrorList.prototype.toString = function()
 {
     return ""+this.defaultRendering();
 };
+
+ErrorList.prototype.toString.safe = true;
 
 ErrorList.prototype.defaultRendering = function()
 {
@@ -2542,6 +2548,8 @@ RadioInput.prototype.toString = function()
 {
     return ""+this.labelTag();
 };
+
+RadioInput.prototype.toString.safe = true;
 
 RadioInput.prototype.isChecked = function()
 {
@@ -4494,6 +4502,8 @@ BoundField.prototype.toString = function()
     return ""+this.defaultRendering();
 };
 
+BoundField.prototype.toString.safe = true;
+
 BoundField.prototype.defaultRendering = function()
 {
     if (this.field.showHiddenInitial)
@@ -4764,6 +4774,19 @@ BaseForm.prototype.toString = function()
     return ""+this.defaultRendering();
 };
 
+BaseForm.prototype.toString.safe = true;
+
+/**
+ * Retrieves a named BoundField when form.fieldName is used in an Akshell
+ * template.
+ */
+BaseForm.prototype.getTemplateVariable = function(name)
+{
+    return (this.fields.hasOwnProperty(name)
+            ? new BoundField(this, this.fields[name], name)
+            : this[name]);
+};
+
 BaseForm.prototype.defaultRendering = function()
 {
     return this.asTable();
@@ -4958,7 +4981,7 @@ BaseForm.prototype._htmlOutput = function(normalRow, errorRow, errorsOnSeparateR
     if (doNotCoerce === true || DOMBuilder.mode == "DOM")
         return rows;
     else
-        return rows.join("\n");
+        return ak.safe(rows.join("\n"));
 };
 
 /**
@@ -5640,6 +5663,8 @@ BaseFormSet.prototype.toString = function()
     return ""+this.defaultRendering();
 };
 
+BaseFormSet.prototype.toString.safe = true;
+
 BaseFormSet.prototype.defaultRendering = function()
 {
     return this.asTable();
@@ -5888,7 +5913,7 @@ BaseFormSet.prototype.asTable = function(doNotCoerce)
 
     if (doNotCoerce === true || DOMBuilder.mode == "DOM")
         return rows;
-    return rows.join("\n");
+    return ak.safe(rows.join("\n"));
 };
 
 BaseFormSet.prototype.asP = function(doNotCoerce)
@@ -5899,7 +5924,7 @@ BaseFormSet.prototype.asP = function(doNotCoerce)
 
     if (doNotCoerce === true || DOMBuilder.mode == "DOM")
         return rows;
-    return rows.join("\n");
+    return ak.safe(rows.join("\n"));
 };
 
 BaseFormSet.prototype.asUL = function(doNotCoerce)
@@ -5910,7 +5935,7 @@ BaseFormSet.prototype.asUL = function(doNotCoerce)
 
     if (doNotCoerce === true || DOMBuilder.mode == "DOM")
         return rows;
-    return rows.join("\n");
+    return ak.safe(rows.join("\n"));
 };
 
 /**
@@ -6108,7 +6133,7 @@ var forms = {
 // Expose newforms to the outside world
 if (modules)
 {
-    module.exports = forms;
+    extend(module.exports, forms);
 }
 else
 {

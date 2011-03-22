@@ -823,6 +823,8 @@ RadioInput.prototype.toString = function()
     return ""+this.labelTag();
 };
 
+RadioInput.prototype.toString.safe = true;
+
 RadioInput.prototype.isChecked = function()
 {
     return this.value === this.choiceValue;

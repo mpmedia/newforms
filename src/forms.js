@@ -87,6 +87,8 @@ BoundField.prototype.toString = function()
     return ""+this.defaultRendering();
 };
 
+BoundField.prototype.toString.safe = true;
+
 BoundField.prototype.defaultRendering = function()
 {
     if (this.field.showHiddenInitial)
@@ -357,6 +359,19 @@ BaseForm.prototype.toString = function()
     return ""+this.defaultRendering();
 };
 
+BaseForm.prototype.toString.safe = true;
+
+/**
+ * Retrieves a named BoundField when form.fieldName is used in an Akshell
+ * template.
+ */
+BaseForm.prototype.getTemplateVariable = function(name)
+{
+    return (this.fields.hasOwnProperty(name)
+            ? new BoundField(this, this.fields[name], name)
+            : this[name]);
+};
+
 BaseForm.prototype.defaultRendering = function()
 {
     return this.asTable();
@@ -551,7 +566,7 @@ BaseForm.prototype._htmlOutput = function(normalRow, errorRow, errorsOnSeparateR
     if (doNotCoerce === true || DOMBuilder.mode == "DOM")
         return rows;
     else
-        return rows.join("\n");
+        return ak.safe(rows.join("\n"));
 };
 
 /**

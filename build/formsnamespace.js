@@ -1,3 +1,5 @@
+var ak = require('ak');
+
 (function(__global__, undefined)
 {
 
@@ -127,7 +129,7 @@ var forms = {
 // Expose newforms to the outside world
 if (modules)
 {
-    module.exports = forms;
+    extend(module.exports, forms);
 }
 else
 {

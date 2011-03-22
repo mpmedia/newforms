@@ -239,6 +239,8 @@ BaseFormSet.prototype.toString = function()
     return ""+this.defaultRendering();
 };
 
+BaseFormSet.prototype.toString.safe = true;
+
 BaseFormSet.prototype.defaultRendering = function()
 {
     return this.asTable();
@@ -487,7 +489,7 @@ BaseFormSet.prototype.asTable = function(doNotCoerce)
 
     if (doNotCoerce === true || DOMBuilder.mode == "DOM")
         return rows;
-    return rows.join("\n");
+    return ak.safe(rows.join("\n"));
 };
 
 BaseFormSet.prototype.asP = function(doNotCoerce)
@@ -498,7 +500,7 @@ BaseFormSet.prototype.asP = function(doNotCoerce)
 
     if (doNotCoerce === true || DOMBuilder.mode == "DOM")
         return rows;
-    return rows.join("\n");
+    return ak.safe(rows.join("\n"));
 };
 
 BaseFormSet.prototype.asUL = function(doNotCoerce)
@@ -509,7 +511,7 @@ BaseFormSet.prototype.asUL = function(doNotCoerce)
 
     if (doNotCoerce === true || DOMBuilder.mode == "DOM")
         return rows;
-    return rows.join("\n");
+    return ak.safe(rows.join("\n"));
 };
 
 /**
