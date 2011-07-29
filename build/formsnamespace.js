@@ -2,7 +2,6 @@ var ak = require('ak');
 
 (function(__global__, undefined) {
 
-
 // Pull in dependencies appropriately depending on the execution environment
 var modules = !!(typeof module !== 'undefined' && module.exports)
   , DOMBuilder = modules ? require('DOMBuilder') : __global__.DOMBuilder;
