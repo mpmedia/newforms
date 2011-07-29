@@ -1,16 +1,18 @@
 {
   "name": "newforms",
-  "version": "0.0.2",
   "description": "Form validation and display library",
-  "tags": ["form", "validation", "display", "HTML"],
+  "version": "0.0.3",
   "author": "Jonathan Buchanan <jonathan.buchanan@gmail.com> (https://github.com/insin)",
-  "main": "./newforms.js",
-  "files": ["./newforms.js"],
+  "tags": ["form", "validation", "display", "HTML"],
+  "main": "newforms",
   "repository": {
     "type": "git",
     "url": "http://github.com/insin/newforms.git"
   },
   "dependencies": {
-      "DOMBuilder": ">=1.4.1"
+      "DOMBuilder": ">=2.0.0"
+  },
+  "devDependencies": {
+      "qunit": ">=0.1.5"
   }
 }

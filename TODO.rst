@@ -5,16 +5,13 @@ TODO
 Porting Django Modules / Changesets
 ===================================
 
-These are not exhaustive lists. They're for quick reference when I have a bit of
-time free to port more of the changes which have been made since the original
-port was done in June 2008 (of which there are many!)
-
 Change histories for the most relevant Django modules can be found here:
 
 * http://code.djangoproject.com/log/django/trunk/django/core/validators.py?mode=follow_copy
 * http://code.djangoproject.com/log/django/trunk/django/forms/fields.py?mode=follow_copy
 * http://code.djangoproject.com/log/django/trunk/django/forms/forms.py?mode=follow_copy
 * http://code.djangoproject.com/log/django/trunk/django/forms/formsets.py?mode=follow_copy
+* http://code.djangoproject.com/log/django/trunk/django/forms/util.py?mode=follow_copy
 * http://code.djangoproject.com/log/django/trunk/django/forms/widgets.py?mode=follow_copy
 
 Changesets
@@ -23,6 +20,20 @@ Changesets
 http://code.djangoproject.com/changeset/7967 (partial)
 
    Media classes - changes to forms.js and widgets.js
+
+https://code.djangoproject.com/changeset/11964
+https://code.djangoproject.com/changeset/12029
+https://code.djangoproject.com/changeset/12698
+https://code.djangoproject.com/changeset/12867
+https://code.djangoproject.com/changeset/13296
+https://code.djangoproject.com/changeset/13484
+
+   Date/time Widget formatting/locale stuff. We already have locale stuff in the
+   ``time`` object, so might as well start making use of it.
+
+https://code.djangoproject.com/changeset/16366
+
+   GenericIPAddressField for IPv4/IPv6 validation
 
 Python-to-JavaScript: Missing Pieces
 ====================================

@@ -1,2 +1,5 @@
 *.pyc
 docs/_*
+node_modules/*
+.project
+.settings
